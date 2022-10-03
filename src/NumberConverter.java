@@ -1,3 +1,4 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class NumberConverter {
@@ -64,30 +65,45 @@ public class NumberConverter {
         return (intnum);
     }
 
-    /* public static void dbltostr ( double number){
+    public static String dbltostr(double number) {
+        String dstr = " ";
+        double mult = 1;
+        int i1;
+        double b1;
+        int i = 0;
+        if (number > 0) {
+            do {
+                i++;
+                mult *= 10;
 
-       int intpartnamber= (int) Math.nextDown(number);
-       String intdbl=  NamberConverter.inttostr(intpartnamber);
+                b1 = number * mult;
 
+                i1 = (int) b1;
+            } while (i1 / mult - number != 0);
 
+            String intdbl = NumberConverter.inttostr(i1);
 
-         double b=number-(int)number;
-         System.out.println("b=" + b);
-         System.out.println(number);
-         System.out.println(intpartnamber);
-         String[] symbol = new String[] {"0","1","2","3","4","5","6","7","8","9"};
-         String str="";
+            dstr = intdbl.substring(0, intdbl.length() - i) + "," + intdbl.substring(intdbl.length() - i);
+        } else {
+            number = -1 * number;
+            do {
+                i++;
+                mult *= 10;
 
+                b1 = number * mult;
 
-            while (b!=0) {
-                 b = b*10;
+                i1 = (int) b1;
+            } while (i1 / mult - number != 0);
 
-                 int r=(int) b;
-                 str = symbol[r] + str;
-                 b=b-r;
+            String intdbl = NumberConverter.inttostr(i1);
 
-             }
-     }*/
+            dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "," + intdbl.substring(intdbl.length() - i);
+
+        }
+        // System.out.println(dstr);
+        return dstr;
+    }
+
     public static double strtodbl(String number) {
         String[] num = number.split("\\.");
         int intpart = NumberConverter.strtoint(num[0]);

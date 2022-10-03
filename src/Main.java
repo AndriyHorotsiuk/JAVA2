@@ -3,6 +3,6 @@ public class Main {
     public static void main(String[] args) {
 
         //Hello.hello();
-NumberConverter.test();
+NumberConverter.dbltostr(-52.565);
 }
 }
