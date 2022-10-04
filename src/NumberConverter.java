@@ -149,6 +149,9 @@ public class NumberConverter {
              String strnum=scan.nextLine();
              System.out.println(NamberConverter.strtodbl(strnum));
                break;
+               System.out.println("Enter a string  number to convert to an double");
+
+
      }*/
 
 
