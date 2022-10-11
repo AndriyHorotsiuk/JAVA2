@@ -6,59 +6,51 @@ public class NumberConverterTest {
         NumberConverterTest.dbltostrTest();
         NumberConverterTest.strtodblTest();
 
-
     }
 
     public static void inttostrTest() {
 
-        int number1 = 15;
-        String result1 = NumberConverter.inttostr(number1);
-        int number2 = -15;
-        String result2 = NumberConverter.inttostr(number2);
+        String result1 = NumberConverter.inttostr(15);
+        String result2 = NumberConverter.inttostr(-15);
         if (("-15".equals(result2))) {
-            System.out.println("inttostrTest is successful");
+            System.out.println("method inttostr test is successful");
         } else {
-            System.out.println("inttostrTest fail");
+            System.out.println("method inttostr test is fail");
         }
     }
 
     public static void strtointTest() {
 
-        String number1 = "15";
-        int result1 = NumberConverter.strtoint(number1);
-        String number2 = "-15";
-        int result2 = NumberConverter.strtoint(number2);
+        int result1 = NumberConverter.strtoint("15");
+        int result2 = NumberConverter.strtoint("-15");
         if ((15 == result1) && (-15 == result2)) {
-            System.out.println("strtointTest  is successful");
+            System.out.println("method strtoint test is successful");
         } else {
-            System.out.println("strtointTest fail");
+            System.out.println("method strtoint test is fail");
         }
 
     }
 
     public static void dbltostrTest() {
-        double number1 = 15.5;
-        String result1 = NumberConverter.dbltostr(number1);
-        double number2 = -15.5;
-        String result2 = NumberConverter.dbltostr(number2);
-        if ("15.5".equals(result1)&&"-15.5".equals(result2)) {
-            System.out.println("dbltostrTest  is successful");
+
+        String result1 = NumberConverter.dbltostr(15.5);
+        String result2 = NumberConverter.dbltostr(-15.5);
+        if ("15.5".equals(result1) && "-15.5".equals(result2)) {
+            System.out.println("method dbltostr test is successful");
         } else {
-            System.out.println("dbltostrTest fail");
+            System.out.println("method dbltostr test is fail");
         }
 
     }
 
     public static void strtodblTest() {
 
-        String number1 = "15.5";
-        double result1 = NumberConverter.strtodbl(number1);
-        String number2 = "-15.5";
-        double result2 = NumberConverter.strtodbl(number2);
+        double result1 = NumberConverter.strtodbl("15.5");
+        double result2 = NumberConverter.strtodbl("-15.5");
         if ((15.5 == result1) && (-15.5 == result2)) {
-            System.out.println("sstrtodblTest is successful");
+            System.out.println("method strtodbl test is successful");
         } else {
-            System.out.println("strtodblTest fail");
+            System.out.println("method strtodbl test is fail");
         }
 
     }
