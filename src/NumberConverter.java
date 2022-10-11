@@ -40,7 +40,7 @@ public class NumberConverter {
         if ("-".equals(num[0])) {
             for (int i = 1; i < num.length; i++) {
                 length = length - 1;
-                intnum = (int) (symbol.indexOf(num[i]) * Math.pow(10, length - 1)) + intnum;
+                intnum = -1*(int) (symbol.indexOf(num[i]) * Math.pow(10, length - 1)) + intnum;
 
 
             }
@@ -55,11 +55,12 @@ public class NumberConverter {
 
 
         }
+
         return (intnum);
     }
 
     public static String dbltostr(double number) {
-        String dstr = " ";
+        String dstr = "";
         double mult = 1;
         int i1;
         double b1;
@@ -76,7 +77,7 @@ public class NumberConverter {
 
             String intdbl = NumberConverter.inttostr(i1);
 
-            dstr = intdbl.substring(0, intdbl.length() - i) + "," + intdbl.substring(intdbl.length() - i);
+            dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
         } else {
             number = -1 * number;
             do {
@@ -90,10 +91,9 @@ public class NumberConverter {
 
             String intdbl = NumberConverter.inttostr(i1);
 
-            dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "," + intdbl.substring(intdbl.length() - i);
+            dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
 
         }
-
         return dstr;
     }
 
@@ -102,9 +102,14 @@ public class NumberConverter {
         int intpart = NumberConverter.strtoint(num[0]);
         int doublpart = NumberConverter.strtoint(num[1]);
         double a = doublpart / Math.pow(10, num[1].length());
+        double stdb=0;
+        if (intpart>0){
+         stdb=intpart+a;
+        }else {
+            stdb=intpart-a;
+        }
 
-
-        return (a);
+        return (stdb);
     }
 
 
