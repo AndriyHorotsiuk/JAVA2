@@ -9,6 +9,10 @@ public class NumberConverter {
         String str = "";
         float sign = Math.signum(number);
         number = Math.abs(number);
+        if (sign == 0) {
+            str = "0";
+        }
+
         while (number > 0) {
             int r = number % 10;
             number = number / 10;
@@ -20,39 +24,34 @@ public class NumberConverter {
             str = str = "-" + str;
 
         }
-        if (sign == 0) {
-            str = "0";
-        }
+
         return (str);
     }
 
     public static int strtoint(String number) {
-
         String symbol = "0123456789";
         int intnum = 0;
-        String[] num = number.split("");
-
-        int length = num.length;
-        if ("-".equals(num[0])) {
-            for (int i = 1; i < num.length; i++) {
-                length = length - 1;
-                intnum = -1 * (int) (symbol.indexOf(num[i]) * Math.pow(10, length - 1)) + intnum;
-
-
-            }
-
-
+        int sign = 0;
+        String festSymbol = String.valueOf(number.charAt(0));
+        int length = number.length();
+        if (festSymbol.equals("-")) {
+            number = number.substring(1);
+            length = length - 1;
+            sign = -1;
         } else {
-            for (int i = 0; i < num.length; i++) {
-                intnum = (int) (symbol.indexOf(num[i]) * Math.pow(10, length - 1)) + intnum;
-                length = length - 1;
-
-            }
-
+            sign = 1;
 
         }
+        String[] num = number.split("");
 
-        return (intnum);
+        for (int i = 0; i < num.length; i++) {
+
+            intnum = (int) (symbol.indexOf(num[i]) * Math.pow(10, length - 1)) + intnum;
+            length = length - 1;
+        }
+
+        return (sign * intnum);
+
     }
 
     public static String dbltostr(double number) {
@@ -61,29 +60,29 @@ public class NumberConverter {
         int i1;
         double b1;
         int i = 0;
-        double sign = Math.signum(number);
-        number = Math.abs(number);
-
-        do {
-            i++;
-            mult *= 10;
-
-            b1 = number * mult;
-
-            i1 = (int) b1;
-        } while (i1 / mult - number != 0);
-
-        String intdbl = NumberConverter.inttostr(i1);
-
-        dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
-
-
-        if (sign < 0) {
-            dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
-        }
+        int sign = (int) Math.signum(number);
         if (sign == 0) {
-            dstr = "0";
+            dstr = "0.0";
+
+        } else {
+            number = Math.abs(number);
+
+            do {
+                i++;
+                mult *= 10;
+                b1 = number * mult;
+                i1 = (int) b1;
+            } while (i1 / mult - number != 0);
+
+            String intdbl = NumberConverter.inttostr(i1);
+
+            dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
+            if (sign < 0) {
+                dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
+
+            }
         }
+
         return dstr;
     }
 
