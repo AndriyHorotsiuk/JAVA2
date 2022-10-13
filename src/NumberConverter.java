@@ -7,25 +7,21 @@ public class NumberConverter {
 
         String[] symbol = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
         String str = "";
-        if (number > 0) {
-            while (number > 0) {
-                int r = number % 10;
-                number = number / 10;
-                str = symbol[r] + str;
+        float sign = Math.signum(number);
+        number = Math.abs(number);
+        while (number > 0) {
+            int r = number % 10;
+            number = number / 10;
+            str = symbol[r] + str;
 
-            }
+        }
 
+        if (sign < 0) {
+            str = str = "-" + str;
 
-        } else {
-            number = Math.abs(number);
-            while (number > 0) {
-                int r = number % 10;
-                number = number / 10;
-                str = symbol[r] + str;
-            }
-
-            str = "-" + str;
-
+        }
+        if (sign == 0) {
+            str = "0";
         }
         return (str);
     }
@@ -65,34 +61,28 @@ public class NumberConverter {
         int i1;
         double b1;
         int i = 0;
-        if (number > 0) {
-            do {
-                i++;
-                mult *= 10;
+        double sign = Math.signum(number);
+        number = Math.abs(number);
 
-                b1 = number * mult;
+        do {
+            i++;
+            mult *= 10;
 
-                i1 = (int) b1;
-            } while (i1 / mult - number != 0);
+            b1 = number * mult;
 
-            String intdbl = NumberConverter.inttostr(i1);
+            i1 = (int) b1;
+        } while (i1 / mult - number != 0);
 
-            dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
-        } else {
-            number = -1 * number;
-            do {
-                i++;
-                mult *= 10;
+        String intdbl = NumberConverter.inttostr(i1);
 
-                b1 = number * mult;
+        dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
 
-                i1 = (int) b1;
-            } while (i1 / mult - number != 0);
 
-            String intdbl = NumberConverter.inttostr(i1);
-
+        if (sign < 0) {
             dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
-
+        }
+        if (sign == 0) {
+            dstr = "0";
         }
         return dstr;
     }
