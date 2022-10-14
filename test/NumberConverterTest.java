@@ -10,10 +10,9 @@ public class NumberConverterTest {
 
     public static void printResultOfTest(boolean condition, String methodName) {
         if (condition) {
-
-            System.out.println(String.format("method %s test is successful", methodName));
+            System.out.printf("method %s test is successful%n", methodName);
         } else {
-            System.out.println(String.format("method %s test is fail", methodName));
+            System.out.printf("method %s test is fail%n", methodName);
         }
     }
 
@@ -32,6 +31,7 @@ public class NumberConverterTest {
         int result2 = NumberConverter.strtoint("-15");
         printResultOfTest(result1 == 15, "strtoint");
         printResultOfTest(result2 == -15, "strtoint");
+
     }
 
     public static void dbltostrTest() {
@@ -40,6 +40,7 @@ public class NumberConverterTest {
         String result2 = NumberConverter.dbltostr(-15.5);
         printResultOfTest(result1.equals("15.5"), "dbltostr");
         printResultOfTest(result2.equals("-15.5"), "dbltostr");
+
     }
 
 
@@ -47,7 +48,7 @@ public class NumberConverterTest {
 
         double result1 = NumberConverter.strtodbl("15.5");
         double result2 = NumberConverter.strtodbl("-15.5");
-        printResultOfTest(result1 == 15.5, "strtoint");
-        printResultOfTest(result2 == -15.5, "strtoint");
+        printResultOfTest(result1 == 15.5, "strtodbl");
+        printResultOfTest(result2 == -15.5, "strtodbl");
     }
 }

@@ -4,13 +4,12 @@ public class NumberConverter {
 
     public static String inttostr(int number) {
 
-
         String[] symbol = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
         String str = "";
         float sign = Math.signum(number);
         number = Math.abs(number);
         if (sign == 0) {
-            str = "0";
+            return str = "0";
         }
 
         while (number > 0) {
@@ -21,7 +20,7 @@ public class NumberConverter {
         }
 
         if (sign < 0) {
-            str = str = "-" + str;
+            str = "-" + str;
 
         }
 
@@ -31,23 +30,18 @@ public class NumberConverter {
     public static int strtoint(String number) {
         String symbol = "0123456789";
         int intnum = 0;
-        int sign = 0;
+        int sign = 1;
         String festSymbol = String.valueOf(number.charAt(0));
-        int length = number.length();
         if (festSymbol.equals("-")) {
             number = number.substring(1);
-            length = length - 1;
             sign = -1;
-        } else {
-            sign = 1;
-
         }
         String[] num = number.split("");
+        int numLenght = num.length;
+        for (String s : num) {
+            intnum = (int) (symbol.indexOf(s) * Math.pow(10, numLenght - 1)) + intnum;
+            numLenght = numLenght - 1;
 
-        for (int i = 0; i < num.length; i++) {
-
-            intnum = (int) (symbol.indexOf(num[i]) * Math.pow(10, length - 1)) + intnum;
-            length = length - 1;
         }
 
         return (sign * intnum);
@@ -78,7 +72,7 @@ public class NumberConverter {
 
             dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
             if (sign < 0) {
-                dstr = "-" + intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
+                dstr = "-" + dstr;
 
             }
         }
@@ -92,12 +86,7 @@ public class NumberConverter {
         int doublpart = NumberConverter.strtoint(num[1]);
         double a = doublpart / Math.pow(10, num[1].length());
         double stdb = 0;
-        if (intpart > 0) {
-            stdb = intpart + a;
-        } else {
-            stdb = intpart - a;
-        }
-
+        stdb = (intpart > 0) ? intpart + a : intpart - a;
         return (stdb);
     }
 
