@@ -1,3 +1,7 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 public class NumberConverter {
 
@@ -37,10 +41,15 @@ public class NumberConverter {
             sign = -1;
         }
         String[] num = number.split("");
-        int numLenght = num.length;
+        Collections.reverse(Arrays.asList(num));
+        //int numLenght = num.length;
+
+        int i =0;
         for (String s : num) {
-            intnum = (int) (symbol.indexOf(s) * Math.pow(10, numLenght - 1)) + intnum;
-            numLenght = numLenght - 1;
+            intnum = (int) (symbol.indexOf(s) * Math.pow(10, i)) + intnum;
+            i++;
+
+            //numLenght = numLenght - 1;
 
         }
 
