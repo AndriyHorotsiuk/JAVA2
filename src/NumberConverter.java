@@ -5,16 +5,17 @@ import java.util.Collections;
 
 public class NumberConverter {
 
-
     public static String inttostr(int number) {
 
         String[] symbol = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
         String str = "";
-        float sign = Math.signum(number);
-        number = Math.abs(number);
-        if (sign == 0) {
-            return str = "0";
+        if (number == 0) {
+            return "0";
         }
+        boolean isNegative = number < 0;
+
+
+        number = Math.abs(number);
 
         while (number > 0) {
             int r = number % 10;
@@ -23,12 +24,11 @@ public class NumberConverter {
 
         }
 
-        if (sign < 0) {
+        if (isNegative) {
             str = "-" + str;
-
         }
 
-        return (str);
+        return str;
     }
 
     public static int strtoint(String number) {
@@ -41,52 +41,40 @@ public class NumberConverter {
             sign = -1;
         }
         String[] num = number.split("");
-        Collections.reverse(Arrays.asList(num));
-        //int numLenght = num.length;
-
-        int i =0;
         for (String s : num) {
-            intnum = (int) (symbol.indexOf(s) * Math.pow(10, i)) + intnum;
-            i++;
-
-            //numLenght = numLenght - 1;
-
+            intnum = symbol.indexOf(s) + intnum * 10;
         }
-
         return (sign * intnum);
-
     }
 
     public static String dbltostr(double number) {
-        String dstr = "";
+        String sing = "";
         double mult = 1;
         int i1;
         double b1;
         int i = 0;
-        int sign = (int) Math.signum(number);
-        if (sign == 0) {
-            dstr = "0.0";
-
-        } else {
-            number = Math.abs(number);
-
-            do {
-                i++;
-                mult *= 10;
-                b1 = number * mult;
-                i1 = (int) b1;
-            } while (i1 / mult - number != 0);
-
-            String intdbl = NumberConverter.inttostr(i1);
-
-            dstr = intdbl.substring(0, intdbl.length() - i) + "." + intdbl.substring(intdbl.length() - i);
-            if (sign < 0) {
-                dstr = "-" + dstr;
-
-            }
+        if (number == 0) {
+            return "0.0";
         }
 
-        return dstr;
+        if (number < 0) {
+            sing = "-";
+        }
+        number = Math.abs(number);
+
+        do {
+            i++;
+            mult *= 10;
+            b1 = number * mult;
+            i1 = (int) b1;
+        } while (i1 / mult - number != 0);
+
+        String intdbl = NumberConverter.inttostr(i1);
+
+        var natural = intdbl.substring(0, intdbl.length() - i);
+        var real = intdbl.substring(intdbl.length() - i);
+
+        return sing + natural + "." + real;
     }
 
     public static double strtodbl(String number) {
@@ -94,12 +82,7 @@ public class NumberConverter {
         int intpart = NumberConverter.strtoint(num[0]);
         int doublpart = NumberConverter.strtoint(num[1]);
         double a = doublpart / Math.pow(10, num[1].length());
-        double stdb = 0;
-        stdb = (intpart > 0) ? intpart + a : intpart - a;
-        return (stdb);
+        return (intpart > 0) ? intpart + a : intpart - a;
     }
-
-
 }
-
 
