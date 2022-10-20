@@ -1,7 +1,4 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
+
 
 public class NumberConverter {
 
@@ -35,8 +32,7 @@ public class NumberConverter {
         String symbol = "0123456789";
         int intnum = 0;
         int sign = 1;
-        String festSymbol = String.valueOf(number.charAt(0));
-        if (festSymbol.equals("-")) {
+        if ("-".equals(String.valueOf(number.charAt(0)))) {
             number = number.substring(1);
             sign = -1;
         }
