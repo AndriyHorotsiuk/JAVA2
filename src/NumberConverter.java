@@ -32,7 +32,7 @@ public class NumberConverter {
         String symbol = "0123456789";
         int intnum = 0;
         int sign = 1;
-        if ("-".equals(String.valueOf(number.charAt(0)))) {
+        if ('-' == number.charAt(0)) {
             number = number.substring(1);
             sign = -1;
         }
