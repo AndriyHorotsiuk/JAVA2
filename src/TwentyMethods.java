@@ -1,3 +1,7 @@
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+
 public class TwentyMethods {
     //Method 1
     public static void printDimChar(char[] arr) {
@@ -38,17 +42,17 @@ public class TwentyMethods {
     }
 
     //Method 5
-    public static int maxTwoDimInt(int num1, int num2) {
+    public static int maxTwoIntNum (int num1, int num2) {
         return Math.max(num1, num2);
     }
 
     //Method 6
-    public static int maxThreeInt(int num1, int num2, int num3) {
+    public static int maxThreeIntNum(int num1, int num2, int num3) {
         return Math.max(Math.max(num1, num2), num3);
     }
 
     //Method 7
-    public static int maxDimInt(int[] arr) {
+    public static int maxElementOfDimInt(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             arr[0] = Math.max(arr[0], arr[i]);
         }
@@ -80,5 +84,65 @@ public class TwentyMethods {
         return -1;
     }
 
+    //Method 12
+    public static int factorialIntNum(int a) {
+        int factorial = a;
+        for (int i = 1; i < a; i++) {
+            factorial = factorial * i;
+        }
+        return factorial;
+    }
+    //Method 13
+
+    public static void leapYear(int a) {
+        if (a % 4 == 0) {
+            System.out.println("Year is leap");
+        } else {
+            System.out.println("Year is not leap");
+        }
+
+    }
+
+    //Method 14
+    public static ArrayList<String> DimStrHaveSomeStr(String str, String[] arr) {
+        ArrayList<String> subStr = new ArrayList<>();
+        for (String s : arr) {
+            if (s.contains(str)) {
+                subStr.add(s);
+            }
+
+        }
+        return subStr;
+    }
+    //Method 15
+    public static ArrayList<Integer> DimIntMultipleOfSomeNum(int a, int[] arr) {
+        ArrayList<Integer> multipleOfNum = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] % a == 0) {
+                multipleOfNum.add(arr[i]);
+            }
+
+        }
+        return multipleOfNum;
+    }
+    //Method 16
+    public static void arrOfDoubleNumThreeAfterPointRound (double[] arr) {
+        ArrayList<Double> doubleNumThreeAfterPoint = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+          arr[i]= Math.round(arr[i]*1000);
+          doubleNumThreeAfterPoint.add(arr[i]/1000);
+
+        }
+        System.out.println(doubleNumThreeAfterPoint.toString());
+    }
+    public static void arrOfDoubleNumThreeAfterPoint(double[] arr) {
+        ArrayList<Double> doubleNumThreeAfterPoint = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i]= Math.floor(arr[i]*1000);
+            doubleNumThreeAfterPoint.add(arr[i]/1000);
+
+        }
+        System.out.println(doubleNumThreeAfterPoint.toString());
+    }
 
 }
