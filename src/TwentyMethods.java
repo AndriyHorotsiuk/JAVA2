@@ -42,7 +42,7 @@ public class TwentyMethods {
     }
 
     //Method 5
-    public static int maxTwoIntNum (int num1, int num2) {
+    public static int maxTwoIntNum(int num1, int num2) {
         return Math.max(num1, num2);
     }
 
@@ -61,8 +61,7 @@ public class TwentyMethods {
     //Method 8
 
     public static String charDimToString(char[] arr) {
-        String str = String.copyValueOf(arr);
-        return str;
+        return String.copyValueOf(arr);
     }
 
     //Method 9
@@ -114,35 +113,75 @@ public class TwentyMethods {
         }
         return subStr;
     }
+
     //Method 15
     public static ArrayList<Integer> DimIntMultipleOfSomeNum(int a, int[] arr) {
         ArrayList<Integer> multipleOfNum = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] % a == 0) {
-                multipleOfNum.add(arr[i]);
+        for (int j : arr) {
+            if (j % a == 0) {
+                multipleOfNum.add(j);
             }
 
         }
         return multipleOfNum;
     }
+
     //Method 16
-    public static void arrOfDoubleNumThreeAfterPointRound (double[] arr) {
+    public static void arrOfDoubleNumThreeAfterPointRound(double[] arr) {
         ArrayList<Double> doubleNumThreeAfterPoint = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-          arr[i]= Math.round(arr[i]*1000);
-          doubleNumThreeAfterPoint.add(arr[i]/1000);
+            arr[i] = Math.round(arr[i] * 1000);
+            doubleNumThreeAfterPoint.add(arr[i] / 1000);
 
         }
         System.out.println(doubleNumThreeAfterPoint.toString());
     }
+
     public static void arrOfDoubleNumThreeAfterPoint(double[] arr) {
         ArrayList<Double> doubleNumThreeAfterPoint = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
-            arr[i]= Math.floor(arr[i]*1000);
-            doubleNumThreeAfterPoint.add(arr[i]/1000);
+            arr[i] = Math.floor(arr[i] * 1000);
+            doubleNumThreeAfterPoint.add(arr[i] / 1000);
 
         }
         System.out.println(doubleNumThreeAfterPoint.toString());
     }
+
+    //Method 17
+    public static int[] arrSortAscending(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j + 1] < arr[j]) {
+                    int exchange = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = exchange;
+                }
+            }
+        }
+        return arr;
+    }
+
+    //Method 18
+    public static int[] arrSortDescending(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j + 1] > arr[j]) {
+                    int exchange = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = exchange;
+                }
+            }
+        }
+        return arr;
+    }
+    //Method 19
+
+    public static int[] arrSortAscOrDesc(boolean AreSortByAsc, int[] arr) {
+        if (AreSortByAsc) {
+            return arrSortAscending(arr);
+        }
+        return arrSortDescending(arr);
+    }
+
 
 }
