@@ -128,8 +128,9 @@ public class TwentyMethods {
         if ((a % 4 != 0)) {
             System.out.println("Year is not leap");
         } else {
-            if (a % 100 == 0 & a % 400 !=0){System.out.println("Year is not leap");
-            }else {
+            if (a % 100 == 0 & a % 400 != 0) {
+                System.out.println("Year is not leap");
+            } else {
                 System.out.println("Year is leap");
             }
         }
@@ -137,16 +138,30 @@ public class TwentyMethods {
     }
 
     //Method 14
-    public static ArrayList<String> dimStrHaveSomeStr(String str, String[] arr) {
-        ArrayList<String> subStr = new ArrayList<>();
-        for (String s : arr) {
-            if (s.contains(str)) {
-                subStr.add(s);
-            }
+    public static String[] dimStrHaveSomeStr(String str, String[] arr) {
+        int arrSize = 0;
 
+        for (String ellemetArr : arr) {
+
+            if (ellemetArr.contains(str)) {
+                arrSize++;
+
+            }
         }
-        return subStr;
+        String[] arrHaveSomeStr = new String[arrSize];
+        int j = 0;
+        for (String s : arr) {
+
+            if (s.contains(str)) {
+                arrHaveSomeStr[j] = s;
+                j++;
+
+            }
+        }
+        
+        return arrHaveSomeStr;
     }
+
 
     //Method 15
     public static ArrayList<Integer> dimIntMultipleOfSomeNum(int a, int[] arr) {
@@ -208,7 +223,7 @@ public class TwentyMethods {
         }
         return arr;
     }
-    //Method 19
+//Method 19
 
     public static int[] arrSortAscOrDesc(boolean AreSortByAsc, int[] arr) {
         if (AreSortByAsc) {
