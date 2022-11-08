@@ -59,7 +59,6 @@ public class TwentyMethods {
 
             maxElenent = maxTwoIntNum(maxElenent, arr[i]);
         }
-        System.out.println(maxElenent);
         return maxElenent;
     }
     //Method 8
@@ -70,15 +69,28 @@ public class TwentyMethods {
             str = str + arr[i];
 
         }
-        System.out.println(str);
+
         return str;
     }
 
     //Method 9
-    public static boolean charSubsequenceTwoDim(char[] arr, char[] subarr) {
-        String strarr = charDimToString(arr);
+    public static boolean charSubSequenceTwoDim(char[] arr, char[] subarr) {
         String sub = charDimToString(subarr);
-        return strarr.contains(sub);
+
+        for (int i = 0; i < arr.length; i++) {
+            String subArray = "";
+            for (int j = 0; j < arr.length - i; j++) {
+                subArray = subArray + arr[i + j];
+                if (sub.equals(subArray)) {
+
+                    return true;
+                }
+            }
+
+
+        }
+        return false;
+
     }
 
     //Method 10
