@@ -158,43 +158,43 @@ public class TwentyMethods {
 
             }
         }
-        
+
         return arrHaveSomeStr;
     }
 
 
     //Method 15
-    public static ArrayList<Integer> dimIntMultipleOfSomeNum(int a, int[] arr) {
-        ArrayList<Integer> multipleOfNum = new ArrayList<>();
-        for (int j : arr) {
-            if (j % a == 0) {
-                multipleOfNum.add(j);
-            }
+    public static int[] dimIntMultipleOfSomeNum(int a, int[] arr) {
+        int arrSize = 0;
 
+        for (int ellemetArr : arr) {
+
+            if (ellemetArr % a == 0) {
+                arrSize++;
+
+            }
         }
-        return multipleOfNum;
+        int[] arrMultipleOfSomeNum = new int[arrSize];
+
+        int j = 0;
+        for (int ellemetArr : arr) {
+
+            if (ellemetArr % a == 0) {
+                arrMultipleOfSomeNum[j] = ellemetArr;
+                j++;
+
+            }
+        }
+
+        return arrMultipleOfSomeNum;
     }
 
     //Method 16
-    public static void arrOfDoubleNumThreeAfterPointRound(double[] arr) {
-        ArrayList<Double> doubleNumThreeAfterPoint = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = Math.round(arr[i] * 1000);
-            doubleNumThreeAfterPoint.add(arr[i] / 1000);
+    public static void DoubleNumThreeAfterPoint(double number) {
 
-        }
-        System.out.printf(doubleNumThreeAfterPoint.toString());
+        System.out.printf("%.3f",number);
     }
 
-    public static void arrOfDoubleNumThreeAfterPoint(double[] arr) {
-        ArrayList<Double> doubleNumThreeAfterPoint = new ArrayList<>();
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = Math.floor(arr[i] * 1000);
-            doubleNumThreeAfterPoint.add(arr[i] / 1000);
-
-        }
-        System.out.println(doubleNumThreeAfterPoint.toString());
-    }
 
     //Method 17
     public static int[] arrSortAscending(int[] arr) {
