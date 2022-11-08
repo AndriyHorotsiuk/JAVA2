@@ -42,32 +42,55 @@ public class TwentyMethods {
 
     //Method 5
     public static int maxTwoIntNum(int num1, int num2) {
-        return Math.max(num1, num2);
+
+        return (num1 > num2) ? num1 : num2;
     }
 
     //Method 6
     public static int maxThreeIntNum(int num1, int num2, int num3) {
-        return Math.max(Math.max(num1, num2), num3);
+
+        return maxTwoIntNum((maxTwoIntNum(num1, num2)), num3);
     }
 
     //Method 7
     public static int maxElementOfDimInt(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            arr[0] = Math.max(arr[0], arr[i]);
+        int maxElenent = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+
+            maxElenent = maxTwoIntNum(maxElenent, arr[i]);
         }
-        return arr[0];
+               return maxElenent;
     }
     //Method 8
 
     public static String charDimToString(char[] arr) {
-        return String.copyValueOf(arr);
+        String str = "";
+        for (int i = 0; i < arr.length; i++) {
+            str = str + arr[i];
+
+        }
+
+        return str;
     }
 
     //Method 9
-    public static boolean charSubsequenceTwoDim(char[] arr, char[] subarr) {
-        String strarr = charDimToString(arr);
+    public static boolean charSubSequenceTwoDim(char[] arr, char[] subarr) {
         String sub = charDimToString(subarr);
-        return strarr.contains(sub);
+
+        for (int i = 0; i < arr.length; i++) {
+            String subArray = "";
+            for (int j = 0; j < arr.length - i; j++) {
+                subArray = subArray + arr[i + j];
+                if (sub.equals(subArray)) {
+
+                    return true;
+                }
+            }
+
+
+        }
+         return false;
+
     }
 
     //Method 10
@@ -75,12 +98,21 @@ public class TwentyMethods {
 
         for (int i = 0; i < arr.length; i++) {
             if (a == arr[i]) {
-
                 return i;
             }
         }
         return -1;
     }
+
+    //Method 11
+    public static int indexIntNumOfIntDimByEnd(int a, int[] arr) {
+
+        int indexByEnd = arr.length - indexIntNumOfIntDim(a, arr) - 1;
+        System.out.println(indexByEnd);
+        return indexByEnd;
+
+    }
+
 
     //Method 12
     public static int factorialIntNum(int a) {
@@ -93,16 +125,20 @@ public class TwentyMethods {
     //Method 13
 
     public static void leapYear(int a) {
-        if (a % 4 == 0) {
-            System.out.println("Year is leap");
-        } else {
+        if ((a % 4 != 0)) {
             System.out.println("Year is not leap");
+        } else {
+            if (a % 100 == 0 & a % 400 != 0) {
+                System.out.println("Year is not leap");
+            } else {
+                System.out.println("Year is leap");
+            }
         }
 
     }
 
     //Method 14
-    public static ArrayList<String> DimStrHaveSomeStr(String str, String[] arr) {
+    public static ArrayList<String> dimStrHaveSomeStr(String str, String[] arr) {
         ArrayList<String> subStr = new ArrayList<>();
         for (String s : arr) {
             if (s.contains(str)) {
@@ -114,7 +150,7 @@ public class TwentyMethods {
     }
 
     //Method 15
-    public static ArrayList<Integer> DimIntMultipleOfSomeNum(int a, int[] arr) {
+    public static ArrayList<Integer> dimIntMultipleOfSomeNum(int a, int[] arr) {
         ArrayList<Integer> multipleOfNum = new ArrayList<>();
         for (int j : arr) {
             if (j % a == 0) {
@@ -133,7 +169,7 @@ public class TwentyMethods {
             doubleNumThreeAfterPoint.add(arr[i] / 1000);
 
         }
-        System.out.println(doubleNumThreeAfterPoint.toString());
+        System.out.printf(doubleNumThreeAfterPoint.toString());
     }
 
     public static void arrOfDoubleNumThreeAfterPoint(double[] arr) {
@@ -183,7 +219,7 @@ public class TwentyMethods {
     }
 
     //Method 20
-    public static boolean RepeateValueInArr(byte[] arr) {
+    public static boolean repeateValueInArr(byte[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i] == arr[j]) {
