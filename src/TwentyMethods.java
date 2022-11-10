@@ -22,20 +22,20 @@ public class TwentyMethods {
                 dimChar[i][j] = ((char) arr[i][j]);
             }
         }
-
+        System.out.println(dimChar.toString());
         return dimChar;
 
     }
 
     //Method 4
-    public static void invertintTwoDim(int[][] arr) {
+    public static int[][] invertintTwoDim(int[][] arr) {
         int[][] dimInvert = new int[arr.length][arr[0].length];
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 dimInvert[i][j] = -arr[i][j];
             }
         }
-
+        return dimInvert;
     }
 
     //Method 5
@@ -144,13 +144,10 @@ public class TwentyMethods {
     //Method 13
 
     public static boolean leapYear(int a) {
-        if ((a % 4 != 0||(a % 100 == 0 & a % 400 != 0))) {
+        if (a % 4 != 0 || (a % 100 == 0 && a % 400 != 0)) {
             return false;
-        } else {
-                return true;
-            }
-
-
+        }
+        return true;
     }
 
     //Method 14
@@ -257,5 +254,6 @@ public class TwentyMethods {
         }
         return false;
     }
+
 
 }
