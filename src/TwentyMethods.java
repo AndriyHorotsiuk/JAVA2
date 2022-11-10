@@ -144,15 +144,12 @@ public class TwentyMethods {
     //Method 13
 
     public static boolean leapYear(int a) {
-        if ((a % 4 != 0)) {
+        if ((a % 4 != 0||(a % 100 == 0 & a % 400 != 0))) {
             return false;
         } else {
-            if (a % 100 == 0 & a % 400 != 0) {
-                return false;
-            } else {
                 return true;
             }
-        }
+
 
     }
 
