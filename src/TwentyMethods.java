@@ -1,6 +1,3 @@
-
-import java.util.ArrayList;
-
 public class TwentyMethods {
     //Method 1
     public static void printDimChar(char[] arr) {
@@ -25,6 +22,7 @@ public class TwentyMethods {
                 dimChar[i][j] = ((char) arr[i][j]);
             }
         }
+
         return dimChar;
 
     }
@@ -75,20 +73,42 @@ public class TwentyMethods {
 
     //Method 9
     public static boolean charSubSequenceTwoDim(char[] arr, char[] subarr) {
-        String sub = charDimToString(subarr);
+        int arrSize = 0;
+        for (char ellemetArr : arr) {
 
+            if (subarr[0] == ellemetArr) {
+                arrSize++;
+            }
+
+        }
+        if (arrSize == 0) {
+            return false;
+        }
+
+        int[] indexOfArr0 = new int[arrSize];
+        int j = 0;
         for (int i = 0; i < arr.length; i++) {
-            String subArray = "";
-            for (int j = 0; j < arr.length - i; j++) {
-                subArray = subArray + arr[i + j];
-                if (sub.equals(subArray)) {
 
+            if (subarr[0] == arr[i]) {
+                indexOfArr0[j++] = i;
+
+            }
+        }
+
+        for (int i : indexOfArr0) {
+            int interactions = 0;
+            for (char c : subarr) {
+                while (arr[i] == c) {
+                    i++;
+                    interactions++;
+                }
+                if (interactions == subarr.length) {
                     return true;
                 }
             }
 
-
         }
+
         return false;
 
     }
@@ -108,7 +128,6 @@ public class TwentyMethods {
     public static int indexIntNumOfIntDimByEnd(int a, int[] arr) {
 
         int indexByEnd = arr.length - indexIntNumOfIntDim(a, arr) - 1;
-        System.out.println(indexByEnd);
         return indexByEnd;
 
     }
@@ -124,14 +143,14 @@ public class TwentyMethods {
     }
     //Method 13
 
-    public static void leapYear(int a) {
+    public static boolean leapYear(int a) {
         if ((a % 4 != 0)) {
-            System.out.println("Year is not leap");
+            return false;
         } else {
             if (a % 100 == 0 & a % 400 != 0) {
-                System.out.println("Year is not leap");
+                return false;
             } else {
-                System.out.println("Year is leap");
+                return true;
             }
         }
 
@@ -153,8 +172,7 @@ public class TwentyMethods {
         for (String s : arr) {
 
             if (s.contains(str)) {
-                arrHaveSomeStr[j] = s;
-                j++;
+                arrHaveSomeStr[j++] = s;
 
             }
         }
@@ -180,9 +198,7 @@ public class TwentyMethods {
         for (int ellemetArr : arr) {
 
             if (ellemetArr % a == 0) {
-                arrMultipleOfSomeNum[j] = ellemetArr;
-                j++;
-
+                arrMultipleOfSomeNum[j++] = ellemetArr;
             }
         }
 
@@ -190,9 +206,9 @@ public class TwentyMethods {
     }
 
     //Method 16
-    public static void DoubleNumThreeAfterPoint(double number) {
+    public static void doubleNumThreeAfterPoint(double number) {
 
-        System.out.printf("%.3f",number);
+        System.out.printf("%.3f", number);
     }
 
 
