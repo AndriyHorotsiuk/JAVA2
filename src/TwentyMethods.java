@@ -9,7 +9,7 @@ public class TwentyMethods {
     //Method 2
     public static void printTwoDimString(String[][] arr) {
         for (String[] strings : arr) {
-            for (int j = 0; j < arr[0].length; j++) System.out.print(strings[j] + " ");
+            for (String s : strings) System.out.print(s+ " ");
             System.out.println();
         }
     }
