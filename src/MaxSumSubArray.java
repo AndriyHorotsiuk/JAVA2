@@ -3,7 +3,7 @@ public class MaxSumSubArray {
 
         int maxSum = 0;
         int subSum = 0;
-        for (int ellementarr: arr) {
+        for (int ellementarr : arr) {
             subSum += ellementarr;
             maxSum = Math.max(maxSum, subSum);
             if (subSum < 0) subSum = 0;
