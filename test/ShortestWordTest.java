@@ -14,10 +14,16 @@ public class ShortestWordTest {
 
     public static void shortestWordOfStringTest() {
 
-        int result1 = ShortestWord.shortestWordOfString("London is the capital of Great Britain");
-        printResultOfTest(result1 == 2, "ShortestWordOfString");
+        int result;
+        result = ShortestWord.shortestWordOfString("London is the capital of Great Britain");
+        printResultOfTest(result == 2, "ShortestWordOfString");
 
-        int result2 = ShortestWord.shortestWordOfString("I've already improved my listening   & talking skills - it's good practice!! Compared to my very first private English Course Learning English with the BBC (started in 1988)  ");
-        printResultOfTest(result2 == 2, "ShortestWordOfString");
+        result = ShortestWord.shortestWordOfString("I've already improved my listening   & talking skills - it's good practice!! Compared to my very first private English Course Learning English with the BBC (started in 1988)  ");
+        printResultOfTest(result == 2, "ShortestWordOfString");
+
+        result = ShortestWord.shortestWordOfString("I'v'e Well-received!!  ");
+
+        printResultOfTest(result == 13, "ShortestWordOfString");
+
     }
 }
