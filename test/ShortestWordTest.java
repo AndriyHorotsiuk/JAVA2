@@ -17,7 +17,7 @@ public class ShortestWordTest {
         int result1 = ShortestWord.ShortestWordOfString("London is the capital of Great Britain");
         printResultOfTest(result1 == 2, "ShortestWordOfString");
 
-        int result2 = ShortestWord.ShortestWordOfString("I've already improved my listening & talking skills - it's good practice!! Compared to my very first private English Course Learning English with the BBC (started in 1988)  ");
+        int result2 = ShortestWord.ShortestWordOfString("I've already improved my listening   & talking skills - it's good practice!! Compared to my very first private English Course Learning English with the BBC (started in 1988)  ");
         printResultOfTest(result2 == 2, "ShortestWordOfString");
     }
 }
