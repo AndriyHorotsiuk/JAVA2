@@ -77,7 +77,7 @@ public class ShortestWord {
         }
     }
 
-    public static int ShortestWordOfString(String str) {
+    public static int shortestWordOfString(String str) {
         String[] arrword = str.split(" ");
         ArrayList<Integer> arrlenghtword = new ArrayList<>();
         for (String s : arrword) {
