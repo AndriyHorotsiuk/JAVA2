@@ -1,92 +1,86 @@
-import java.util.ArrayList;
-import java.util.Collections;
+
 
 public class ShortestWord {
 
-    static char[] superfluousSymbolChar = new char[]{'!', '@', '#', '$', '%', '^', '&', '*', '"', '(',')', '0', '-', '_', '+', '=', '{', '}', '[', ']', ' ', '\'', ';', ':', '|', '?', ',', '<', '>'};
-    static String[] superfluousSymbolString = new String[]{"!","'", "-", "@", "#", "$", "%", "^", "&", "*", "(",")", "0", "_", "+", "=", "{", "}", "[", "]", " ", ";", "\"", ":", "|", "?", ",", "<", ">"};
-    static String[] superfluousSymbolWithoutAllowedinMiddleWord = new String[]{"!", "@", "#", "$", "%", "^", "&", "*", "(",")", "0", "_", "+", "=", "{", "}", "[", "]", " ", ";", "\"", ":", "|", "?", ",", "<", ">"};
-    public static int indexOf(char a, char[] arr) {
-        if (arr.length == 0) {
-            return -1;
-        } else {
-            for (int i = 0; i < arr.length; i++) {
-                if (a == arr[i]) {
-                    return i;
 
-                }
-            }
-            return -1;
+    public static boolean ifSuperfluousSymbol(char symbol) {
+        if (((int) symbol > 64) && ((int) symbol < 91) || ((int) symbol > 96) && ((int) symbol < 123)) {
+            return false;
         }
+        return true;
     }
 
-    public static int indexOf(String a, String[] arr) {
-        if (arr.length == 0) {
-            return -1;
-        } else {
-            for (int i = 0; i < arr.length; i++) {
-                if (a.equals(arr[i])) {
-                    return i;
-                }
-            }
-            return -1;
-        }
-    }
 
     public static String deletSuperfluousSymbolRight(String str) {
+
         if (str.length() == 0) {
+
             return "";
-        }
-        if (indexOf(str, superfluousSymbolString) > 0) {
-            return "";
-        }
-        while (indexOf(str.charAt(str.length() - 1), superfluousSymbolChar) != -1) {
-            str = str.substring(0, str.length() - 1);
-        }
-
-        return str;
-
-    }
-    public static String deletSuperfluousSymbolLeft(String str) {
-        if (str.length() == 0) {
-            return "";
-        }
-        if (indexOf(str, superfluousSymbolWithoutAllowedinMiddleWord) > 0) {
-            return "";
-        }
-        while (indexOf(str.charAt(0), superfluousSymbolChar) != -1) {
-            str = str.substring(1, str.length());
-        }
-        return str;
-
-    }
-
-
-    public static int lenghtOfStr(String str) {
-        if (str.equals("")) {
-            return -1;
         } else {
-            String[] letterOrSymbol = str.split("");
-            for (int i = 0; i < letterOrSymbol.length; i++) {
+            while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(str.length() - 1))) {
+                str = str.substring(0, str.length() - 1);
+            }
 
-                if (indexOf(letterOrSymbol[i], superfluousSymbolString) > 0) {
-                    return -1;
+        }
+        return str;
+
+    }
+
+    public static String deletSuperfluousSymbolLeft(String str) {
+
+        if (str.length() == 0) {
+
+            return "";
+        } else {
+            while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(0))) {
+                str = str.substring(1);
+            }
+
+        }
+
+        return str;
+
+    }
+
+
+    public static String deletSuperfluousWord(String str) {
+        int numberOfNotSuperfluousWord = 0;
+        int numberOfSuperfluousWord = 0;
+        String word = str;
+        while (word.length() > 0) {
+            if (ifSuperfluousSymbol(word.charAt(0))) {
+                numberOfSuperfluousWord++;
+                if (((int) (word.charAt(0)) == 45) || ((int) (word.charAt(0)) == 39)) {
+                    numberOfNotSuperfluousWord++;
                 }
             }
-            return str.length();
+            word = word.substring(1);
         }
+
+        if ((numberOfSuperfluousWord == 0) || (numberOfNotSuperfluousWord == 1)) {
+            return str;
+        } else {
+            return "";
+
+        }
+
+
     }
 
-    public static int shortestWordOfString(String str) {
-        String[] arrword = str.split(" ");
-        ArrayList<Integer> arrlenghtword = new ArrayList<>();
-        for (String s : arrword) {
-            s = deletSuperfluousSymbolLeft(deletSuperfluousSymbolRight(s));
-            if (lenghtOfStr(s) > 0) {
-                arrlenghtword.add(lenghtOfStr(s));
-            }
-        }
 
-        return Collections.min(arrlenghtword);
+    public static int shortestWordOfString(String str) {
+        int minLengtWord = str.length();
+        String[] arrword = str.split(" ");
+        for (String s : arrword) {
+            s = deletSuperfluousSymbolRight(s);
+            s = deletSuperfluousSymbolLeft(s);
+            s = deletSuperfluousWord(s);
+
+            if (minLengtWord > s.length() && s.length() != 0) {
+                minLengtWord = s.length();
+            }
+
+        }
+        return minLengtWord;
     }
 }
