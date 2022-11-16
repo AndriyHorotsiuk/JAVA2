@@ -4,7 +4,7 @@ public class ShortestWord {
 
 
     public static boolean ifSuperfluousSymbol(char symbol) {
-        if (((int) symbol > 64) && ((int) symbol < 91) || ((int) symbol > 96) && ((int) symbol < 123)) {
+        if ((symbol > 64) && (symbol < 91) || (symbol > 96) && (symbol < 123)) {
             return false;
         }
         return true;
@@ -16,10 +16,10 @@ public class ShortestWord {
         if (str.length() == 0) {
 
             return "";
-        } else {
-            while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(str.length() - 1))) {
-                str = str.substring(0, str.length() - 1);
-            }
+        }
+
+        while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(str.length() - 1))) {
+            str = str.substring(0, str.length() - 1);
 
         }
         return str;
@@ -31,10 +31,9 @@ public class ShortestWord {
         if (str.length() == 0) {
 
             return "";
-        } else {
-            while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(0))) {
-                str = str.substring(1);
-            }
+        }
+        while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(0))) {
+            str = str.substring(1);
 
         }
 
@@ -50,7 +49,7 @@ public class ShortestWord {
         while (word.length() > 0) {
             if (ifSuperfluousSymbol(word.charAt(0))) {
                 numberOfSuperfluousWord++;
-                if (((int) (word.charAt(0)) == 45) || ((int) (word.charAt(0)) == 39)) {
+                if (( (word.charAt(0)) == 45) || ( (word.charAt(0)) == 39)) {
                     numberOfNotSuperfluousWord++;
                 }
             }
@@ -59,10 +58,8 @@ public class ShortestWord {
 
         if ((numberOfSuperfluousWord == 0) || (numberOfNotSuperfluousWord == 1)) {
             return str;
-        } else {
-            return "";
-
         }
+        return "";
 
 
     }
