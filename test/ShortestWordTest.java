@@ -25,5 +25,9 @@ public class ShortestWordTest {
 
         printResultOfTest(result == 13, "ShortestWordOfString");
 
+
+        result = ShortestWord.shortestWordOfString("sad tic-tac-toe");
+
+        printResultOfTest(result == 11, "ShortestWordOfString");
     }
 }

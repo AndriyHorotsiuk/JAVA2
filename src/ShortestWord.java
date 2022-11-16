@@ -9,7 +9,7 @@ public class ShortestWord {
     }
 
 
-    public static String deletNotLetterRight(String str) {
+    public static String deleteNotLetterRight(String str) {
 
         if (str.length() == 0) {
 
@@ -24,7 +24,7 @@ public class ShortestWord {
 
     }
 
-    public static String deletNotLetterLeft(String str) {
+    public static String deleteNotLetterLeft(String str) {
 
         if (str.length() == 0) {
 
@@ -40,7 +40,7 @@ public class ShortestWord {
     }
 
 
-    public static String deletNotLetterWord(String str) {
+    public static String deleteNotLetterWord(String str) {
         int numberOfNotSuperfluousWord = 0;
         int numberOfSuperfluousWord = 0;
         String word = str;
@@ -67,9 +67,9 @@ public class ShortestWord {
         int minLengtWord = str.length();
         String[] arrword = str.split(" ");
         for (String s : arrword) {
-            s = deletNotLetterRight(s);
-            s = deletNotLetterLeft(s);
-            s = deletNotLetterWord(s);
+            s = deleteNotLetterRight(s);
+            s = deleteNotLetterLeft(s);
+            s = deleteNotLetterWord(s);
 
             if (minLengtWord > s.length() && s.length() != 0) {
                 minLengtWord = s.length();
