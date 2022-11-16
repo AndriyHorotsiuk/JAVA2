@@ -3,11 +3,9 @@
 public class ShortestWord {
 
 
-    public static boolean ifSuperfluousSymbol(char symbol) {
-        if ((symbol > 64) && (symbol < 91) || (symbol > 96) && (symbol < 123)) {
-            return false;
-        }
-        return true;
+    public static boolean isLetter(char symbol) {
+      return ((symbol > 'A') && (symbol < 'Z') || (symbol > 'a') && (symbol < 'z')) ;
+
     }
 
 
@@ -18,7 +16,7 @@ public class ShortestWord {
             return "";
         }
 
-        while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(str.length() - 1))) {
+        while ((str.length() > 0) && !isLetter(str.charAt(str.length() - 1))) {
             str = str.substring(0, str.length() - 1);
 
         }
@@ -32,7 +30,7 @@ public class ShortestWord {
 
             return "";
         }
-        while ((str.length() > 0) && ifSuperfluousSymbol(str.charAt(0))) {
+        while ((str.length() > 0) && !isLetter(str.charAt(0))) {
             str = str.substring(1);
 
         }
@@ -47,7 +45,7 @@ public class ShortestWord {
         int numberOfSuperfluousWord = 0;
         String word = str;
         while (word.length() > 0) {
-            if (ifSuperfluousSymbol(word.charAt(0))) {
+            if (!isLetter(word.charAt(0))) {
                 numberOfSuperfluousWord++;
                 if (( (word.charAt(0)) == 45) || ( (word.charAt(0)) == 39)) {
                     numberOfNotSuperfluousWord++;
