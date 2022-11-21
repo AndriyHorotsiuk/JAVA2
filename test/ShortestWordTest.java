@@ -15,7 +15,7 @@ public class ShortestWordTest {
     public static void shortestWordOfStringTest() {
 
         int result;
-        result = ShortestWord.shortestWordOfString("London is the capital of Great Britain");
+     result = ShortestWord.shortestWordOfString("London is the capital of Great Britain");
         printResultOfTest(result == 2, "ShortestWordOfString");
 
         result = ShortestWord.shortestWordOfString("I've already improved my listening   & talking skills - it's good practice!! Compared to my very first private English Course Learning English with the BBC (started in 1988)  ");
@@ -26,7 +26,7 @@ public class ShortestWordTest {
         printResultOfTest(result == 13, "ShortestWordOfString");
 
 
-        result = ShortestWord.shortestWordOfString("sad tic-tac-toe");
+        result = ShortestWord.shortestWordOfString("sad--as tic-tac-toe");
 
         printResultOfTest(result == 11, "ShortestWordOfString");
     }
