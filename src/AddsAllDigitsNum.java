@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class addsAllDigitsNum {
-    public static void AddsAllDigitsIntNum() {
+    public static void addsAllDigitsIntNum() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input an integer between 0 and 1000:");
