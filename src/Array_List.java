@@ -27,4 +27,20 @@ public class Array_List<T> {
         lengthPaddingArr++;
 
     }
+
+    public int size() {
+        return lengthPaddingArr;
+
+
+    }
+
+    public int indexOf(T obj) {
+        for (int i = 0; i < array_List.length - 1; i++) {
+            if (array_List[i].equals(obj)) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
 }
