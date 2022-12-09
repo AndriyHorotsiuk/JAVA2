@@ -1,8 +1,8 @@
-public class Array_List<T> {
+public class MyArrayList<T> {
     /* public Array_List (int sizeArrayList){
 
      }*/
-    private int sizeArrayList = 10;
+    static int sizeArrayList = 4;
 
     private Object[] array_List = new Object[sizeArrayList];
 
@@ -16,7 +16,7 @@ public class Array_List<T> {
     }
 
     public void add(T ell) {
-        if (lengthPaddingArr > (array_List.length - 1)) {
+        if (lengthPaddingArr == (array_List.length - 1)) {
             Object[] temporaryArray = new Object[sizeArrayList];
             temporaryArray = arrcopy(array_List, temporaryArray);
             sizeArrayList = 2 * sizeArrayList;
