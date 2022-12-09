@@ -9,7 +9,7 @@ public class TwentyMethods {
     //Method 2
     public static void printTwoDimString(String[][] arr) {
         for (String[] strings : arr) {
-            for (String s : strings) System.out.print(s+ " ");
+            for (String s : strings) System.out.print(s + " ");
             System.out.println();
         }
     }
@@ -144,10 +144,8 @@ public class TwentyMethods {
     //Method 13
 
     public static boolean leapYear(int a) {
-        if (a % 4 != 0 || (a % 100 == 0 && a % 400 != 0)) {
-            return false;
-        }
-        return true;
+        return !(a % 4 != 0 || (a % 100 == 0 && a % 400 != 0));
+
     }
 
     //Method 14
