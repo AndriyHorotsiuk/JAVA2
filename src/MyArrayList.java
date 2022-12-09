@@ -7,7 +7,7 @@ public class  MyArrayList<T> implements List {
     /* public Array_List (int sizeArrayList){
 
      }*/
-    static int sizeArrayList = 10;
+    private int sizeArrayList = 10;
 
     private Object[] array_List = new Object[sizeArrayList];
 
