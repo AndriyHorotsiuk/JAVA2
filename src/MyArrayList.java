@@ -3,15 +3,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class  MyArrayList<T> implements List {
+public class MyArrayList<T> implements List {
     /* public Array_List (int sizeArrayList){
 
      }*/
-    private int sizeArrayList = 10;
+    private int sizeArray = 3;
+    private int listSize = 0;
+    private Object[] myArrayList = new Object[sizeArray];
 
-    private Object[] array_List = new Object[sizeArrayList];
-
-   private int listSize = 0;
 
     private Object[] arrcopy(Object[] arrFrom, Object[] arrTo) {
         for (int i = 0; i < arrFrom.length - 1; i++) {
@@ -21,26 +20,30 @@ public class  MyArrayList<T> implements List {
     }
 
 
-
     @Override
     public boolean add(Object ell) {
-        if (listSize == (array_List.length - 1)) {
-            Object[] temporaryArray = new Object[sizeArrayList];
-            temporaryArray = arrcopy(array_List, temporaryArray);
-            sizeArrayList = 2 * sizeArrayList;
-            Object[] array_List = new Object[sizeArrayList];
-            array_List = arrcopy(temporaryArray, array_List);
-        }
-        array_List[listSize] = ell;
-        listSize++;
+        if (listSize == sizeArray - 1) {
+            try {
+                sizeArray = 2 * sizeArray;
+            } catch (OutOfMemoryError e) {
+                System.out.println("error");
+            }
 
+            Object[] temporaryArray = new Object[sizeArray];
+            temporaryArray = arrcopy(myArrayList, temporaryArray);
+            myArrayList = temporaryArray;
+
+        }
+        myArrayList[listSize] = ell;
+        listSize++;
         return true;
     }
+
     @Override
     public int indexOf(Object obj) {
 
-        for (int i = 0; i < array_List.length - 1; i++) {
-            if (array_List[i].equals(obj)) {
+        for (int i = 0; i < myArrayList.length - 1; i++) {
+            if (myArrayList[i].equals(obj)) {
                 return i;
             }
         }
@@ -49,11 +52,30 @@ public class  MyArrayList<T> implements List {
     }
 
 
-
     public int size() {
         return listSize;
 
     }
+
+    @Override
+    public Object remove(int index) {
+
+        for (int i = index; i < listSize; i++) {
+            myArrayList[i] = myArrayList[i + 1];
+        }
+        myArrayList[listSize] = null;
+        listSize--;
+        if ((myArrayList.length / listSize) > 2) {
+            sizeArray =  sizeArray/2;
+            Object[] temporaryArray = new Object[sizeArray ];
+            temporaryArray = arrcopy(myArrayList, temporaryArray);
+            myArrayList = temporaryArray;
+
+        }
+        System.out.println(myArrayList.length);
+        return myArrayList;
+    }
+
 
     @Override
     public boolean isEmpty() {
@@ -111,12 +133,6 @@ public class  MyArrayList<T> implements List {
     public void add(int index, Object element) {
 
     }
-
-    @Override
-    public Object remove(int index) {
-        return null;
-    }
-
 
 
     @Override
