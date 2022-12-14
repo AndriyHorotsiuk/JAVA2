@@ -7,7 +7,7 @@ public class MyArrayList<T> implements List {
     /* public Array_List (int sizeArrayList){
 
      }*/
-    private int sizeArray = 3;
+    private int sizeArray = 4;
     private int listSize = 0;
     private Object[] myArrayList = new Object[sizeArray];
 
@@ -65,14 +65,16 @@ public class MyArrayList<T> implements List {
         }
         myArrayList[listSize] = null;
         listSize--;
-        if ((myArrayList.length / listSize) > 2) {
-            sizeArray =  sizeArray/2;
-            Object[] temporaryArray = new Object[sizeArray ];
-            temporaryArray = arrcopy(myArrayList, temporaryArray);
+
+        if (((myArrayList.length - 1) / listSize) > 2) {
+            sizeArray = sizeArray / 2 - sizeArray % 2;
+            Object[] temporaryArray = new Object[sizeArray];
+            for (int i = 0; i < sizeArray; i++) {
+                temporaryArray[i] = myArrayList[i];
+            }
             myArrayList = temporaryArray;
 
         }
-        System.out.println(myArrayList.length);
         return myArrayList;
     }
 

@@ -4,9 +4,12 @@ public class Main {
         MyArrayList<String> str = new MyArrayList<String>();
         str.add("dfgg");
         str.add("dfgg");
-
         str.add("dfgg");
-       // str.remove(2);
+        str.add("dfgg");
+
+
+        str.remove(3);
+        str.remove(0);
         System.out.println(str.size());
     }
 
