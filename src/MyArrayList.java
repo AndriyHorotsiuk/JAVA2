@@ -4,11 +4,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class MyArrayList<T> implements List {
-    /* public Array_List (int sizeArrayList){
 
-     }*/
-    private int sizeArray = 4;
+
+    private int sizeArray = 3;
     private int listSize = 0;
+
     private Object[] myArrayList = new Object[sizeArray];
 
 
@@ -26,7 +26,7 @@ public class MyArrayList<T> implements List {
             try {
                 sizeArray = 2 * sizeArray;
             } catch (OutOfMemoryError e) {
-                System.out.println("error");
+                System.out.println("Error");
             }
 
             Object[] temporaryArray = new Object[sizeArray];
@@ -36,6 +36,7 @@ public class MyArrayList<T> implements List {
         }
         myArrayList[listSize] = ell;
         listSize++;
+        System.out.println(sizeArray);
         return true;
     }
 
@@ -54,7 +55,6 @@ public class MyArrayList<T> implements List {
 
     public int size() {
         return listSize;
-
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MyArrayList<T> implements List {
         myArrayList[listSize] = null;
         listSize--;
 
-        if (((myArrayList.length - 1) / listSize) > 2) {
+        if (sizeArray / listSize > 2) {
             sizeArray = sizeArray / 2 - sizeArray % 2;
             Object[] temporaryArray = new Object[sizeArray];
             for (int i = 0; i < sizeArray; i++) {
@@ -75,20 +75,54 @@ public class MyArrayList<T> implements List {
             myArrayList = temporaryArray;
 
         }
+        System.out.println(myArrayList.length);
         return myArrayList;
     }
 
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return (listSize == 0);
+    }
+
+    @Override
+    public void clear() {
+        for (int i = 0; i < listSize; i++) {
+            myArrayList[i] = null;
+        }
+        listSize = 0;
+
+    }
+
+
+    @Override
+    public Object get(int index) {
+        return (T) myArrayList[index];
     }
 
     @Override
     public boolean contains(Object o) {
+        for (int i = 0; i < listSize; i++) {
+            if (myArrayList[i].equals(o)) {
+                return true;
+            }
 
+        }
         return false;
     }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        int lastIndex = -1;
+        for (int i = 0; i < listSize; i++) {
+            if (myArrayList[i].equals(o)) {
+                lastIndex = i;
+            }
+
+        }
+        return lastIndex;
+    }
+
 
     @Override
     public Iterator iterator() {
@@ -116,15 +150,6 @@ public class MyArrayList<T> implements List {
         return false;
     }
 
-    @Override
-    public void clear() {
-
-    }
-
-    @Override
-    public Object get(int index) {
-        return null;
-    }
 
     @Override
     public Object set(int index, Object element) {
@@ -136,11 +161,6 @@ public class MyArrayList<T> implements List {
 
     }
 
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return 0;
-    }
 
     @Override
     public ListIterator listIterator() {
