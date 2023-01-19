@@ -21,7 +21,7 @@ public class MyLinkedList<T> implements List {
     }
 
 
-    private Node  getNode(int index) {
+    private Node getNode(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -54,45 +54,93 @@ public class MyLinkedList<T> implements List {
     @Override
     public void add(int index, Object element) {
         Node nodeOfInsertElement = new Node<>(null, element, null);
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
-        }
         if (index == size) {
             add(element);
         }
-        Node nodeOldElement = first;
-        for (int i = 0; i < index; i++) {
-            nodeOldElement = nodeOldElement.nextNode;
-        }
+        Node nodeOldElement = getNode(index);
         nodeOfInsertElement.nextNode = nodeOldElement;
         nodeOfInsertElement.prevNode = nodeOldElement.prevNode;
         nodeOldElement.prevNode = nodeOfInsertElement;
-
 
         size++;
     }
 
     @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-
-    @Override
     public int size() {
+
         return size;
     }
 
+    @Override
+    public Object remove(int index) {
+        if (index == 0) {
+            first = first.nextNode;
+            first.nextNode.prevNode = first;
+        }
+        if (index == size - 1) {
+            last = last.prevNode;
+            last.prevNode.nextNode = null;
+        }
+        Node nodeOfBeforRemoveElement = getNode(index - 1);
+        Node nodeOfAfterRemoveElement = getNode(index + 1);
+        nodeOfBeforRemoveElement.nextNode = nodeOfAfterRemoveElement;
+        nodeOfAfterRemoveElement.prevNode = nodeOfBeforRemoveElement;
+        size--;
+        return null; //розібратися з об"єктом який повертається
+    }
 
     @Override
     public boolean isEmpty() {
-        return false;
+
+        return size == 0;
+    }
+
+    @Override
+    public void clear() {
+        first == null;
+        last == null;
+        size = 0;
+
+    }
+
+    @Override
+    public Object set(int index, Object element) {
+        Node nodeOfInsertElement = getNode(index);
+        nodeOfInsertElement.elementNode = element;
+        return null; //розібратися з об"єктом який повертається
     }
 
     @Override
     public boolean contains(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (get(i) == o) {
+                return true;
+            }
+        }
         return false;
     }
+
+    public Object getFirst() {
+        return first;
+    }
+
+    public Object getLast() {
+        return last;
+    }
+
+
+
+
+
+
+
+    @Override
+    public boolean remove(Object o) {
+
+
+        return true;
+    }
+
 
     @Override
     public Iterator iterator() {
@@ -115,22 +163,6 @@ public class MyLinkedList<T> implements List {
         return false;
     }
 
-    @Override
-    public void clear() {
-
-    }
-
-
-    @Override
-    public Object set(int index, Object element) {
-        return null;
-    }
-
-
-    @Override
-    public Object remove(int index) {
-        return null;
-    }
 
     @Override
     public int indexOf(Object o) {
