@@ -6,9 +6,9 @@ import java.util.ListIterator;
 public class MyArrayList<T> implements List {
 
 
-    private int sizeArray = 3;
-    private int listSize = 0;
-
+    private int sizeArray = 10;
+    private int sizeList = 0;
+    private int resizeMultiplier = 2;
     private Object[] myArrayList = new Object[sizeArray];
 
 
@@ -22,21 +22,19 @@ public class MyArrayList<T> implements List {
 
     @Override
     public boolean add(Object ell) {
-        if (listSize == sizeArray - 1) {
+        if (sizeList == sizeArray - 1) {
             try {
-                sizeArray = 2 * sizeArray;
+                sizeArray = resizeMultiplier * sizeArray;
             } catch (OutOfMemoryError e) {
                 System.out.println("Error");
             }
 
             Object[] temporaryArray = new Object[sizeArray];
-            temporaryArray = arrcopy(myArrayList, temporaryArray);
-            myArrayList = temporaryArray;
+            myArrayList = arrcopy(myArrayList, temporaryArray);
 
         }
-        myArrayList[listSize] = ell;
-        listSize++;
-        System.out.println(sizeArray);
+        myArrayList[sizeList] = ell;
+        sizeList++;
         return true;
     }
 
@@ -54,20 +52,23 @@ public class MyArrayList<T> implements List {
 
 
     public int size() {
-        return listSize;
+        return sizeList;
     }
 
     @Override
     public Object remove(int index) {
+        if (index < 0 || index >= sizeList) {
+            throw new IndexOutOfBoundsException();
+        }
 
-        for (int i = index; i < listSize; i++) {
+        for (int i = index; i < sizeList; i++) {
             myArrayList[i] = myArrayList[i + 1];
         }
-        myArrayList[listSize] = null;
-        listSize--;
+        myArrayList[sizeList] = null;
+        sizeList--;
 
-        if (sizeArray / listSize > 2) {
-            sizeArray = sizeArray / 2 - sizeArray % 2;
+        if (sizeArray / sizeList > resizeMultiplier) {
+            sizeArray = (int) Math.floor(sizeArray / resizeMultiplier);
             Object[] temporaryArray = new Object[sizeArray];
             for (int i = 0; i < sizeArray; i++) {
                 temporaryArray[i] = myArrayList[i];
@@ -75,22 +76,20 @@ public class MyArrayList<T> implements List {
             myArrayList = temporaryArray;
 
         }
-        System.out.println(myArrayList.length);
         return myArrayList;
     }
 
 
     @Override
     public boolean isEmpty() {
-        return (listSize == 0);
+        return (sizeList == 0);
     }
 
     @Override
     public void clear() {
-        for (int i = 0; i < listSize; i++) {
-            myArrayList[i] = null;
-        }
-        listSize = 0;
+     sizeArray = 10;
+     sizeList = 0;
+     myArrayList = new Object[sizeArray];
 
     }
 
@@ -102,7 +101,7 @@ public class MyArrayList<T> implements List {
 
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < listSize; i++) {
+        for (int i = 0; i < sizeList; i++) {
             if (myArrayList[i].equals(o)) {
                 return true;
             }
@@ -113,14 +112,12 @@ public class MyArrayList<T> implements List {
 
     @Override
     public int lastIndexOf(Object o) {
-        int lastIndex = -1;
-        for (int i = 0; i < listSize; i++) {
+        for (int i = sizeList; i >=0; i--) {
             if (myArrayList[i].equals(o)) {
-                lastIndex = i;
+                return i;
             }
-
         }
-        return lastIndex;
+        return -1;
     }
 
 
