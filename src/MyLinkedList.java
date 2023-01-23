@@ -38,6 +38,9 @@ public class MyLinkedList<T> implements List {
         Node newNode = new Node<T>(last, (T) o, null);
         if (first == null) {
             first = newNode;
+            last = newNode;
+            size++;
+            return true;
         }
         last.nextNode = newNode;
         last = newNode;
@@ -53,14 +56,12 @@ public class MyLinkedList<T> implements List {
 
     @Override
     public void add(int index, Object element) {
-        Node nodeOfInsertElement = new Node<>(null, element, null);
         if (index == size) {
             add(element);
         }
-        Node nodeOldElement = getNode(index);
-        nodeOfInsertElement.nextNode = nodeOldElement;
-        nodeOfInsertElement.prevNode = nodeOldElement.prevNode;
-        nodeOldElement.prevNode = nodeOfInsertElement;
+        Node oldNode = getNode(index);
+        Node newNode = new Node<>(oldNode.prevNode, element, oldNode);
+        oldNode.prevNode = newNode;
 
         size++;
     }
@@ -81,10 +82,10 @@ public class MyLinkedList<T> implements List {
             last = last.prevNode;
             last.prevNode.nextNode = null;
         }
-        Node nodeOfBeforRemoveElement = getNode(index - 1);
-        Node nodeOfAfterRemoveElement = getNode(index + 1);
-        nodeOfBeforRemoveElement.nextNode = nodeOfAfterRemoveElement;
-        nodeOfAfterRemoveElement.prevNode = nodeOfBeforRemoveElement;
+        Node beforeNode = getNode(index - 1);
+        Node afterNode = getNode(index + 1);
+        beforeNode.nextNode = afterNode;
+        afterNode.prevNode = beforeNode;
         size--;
         return null; //розібратися з об"єктом який повертається
     }
