@@ -1,16 +1,14 @@
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class MyHashMap<K, V> implements Map {
-    private Node[] firstNodes;
-    private int capacity=16;
+    private int sizeArrOfNode = 16;
 
-    firstNodes = new Node[capacity];
+    private Node<K,V>[] arrOfNodes = new Node[sizeArrOfNode];
+    int sizeMyHashMap = 0;
 
-
-    class Node {
+    class Node<K,V> {
         K key;
         V value;
         Node next;
@@ -19,14 +17,60 @@ public class MyHashMap<K, V> implements Map {
             this.key = key;
             this.value = value;
             next = null;
+
         }
+    }
+
+
+
+    private int hashCode(Object key) {
+        if (key == null) {
+            return 0;
+        }
+        return key.hashCode();
+    }
+
+    @Override
+    public Object put(Object key, Object value) {
+        int index = hashCode(key) % (sizeArrOfNode - 1);
+        Node newNode = new Node((K) key, (V) value);
+        Node oldNode = arrOfNodes[index];
+
+        if (arrOfNodes[index] == null) {
+            arrOfNodes[index] = newNode;
+            sizeMyHashMap++;
+            return arrOfNodes;
+        }
+
+
+        while (oldNode.next != null) {
+
+            if ((hashCode(oldNode.key) == hashCode(newNode.key)) && (oldNode.key.equals(newNode.key))) {
+                newNode.next = oldNode.next;
+                oldNode = newNode;
+                sizeMyHashMap++;
+                return arrOfNodes;
+            }
+
+            oldNode = oldNode.next;
+        }
+
+        oldNode.next = newNode;
+        sizeMyHashMap++;
+        return arrOfNodes;
+    }
+
+    @Override
+    public Object get(Object key) {
+        return null;
     }
 
 
     @Override
     public int size() {
-        return 0;
+        return sizeMyHashMap;
     }
+
 
     @Override
     public boolean isEmpty() {
@@ -43,15 +87,6 @@ public class MyHashMap<K, V> implements Map {
         return false;
     }
 
-    @Override
-    public Object get(Object key) {
-        return null;
-    }
-
-    @Override
-    public Object put(Object key, Object value) {
-        return null;
-    }
 
     @Override
     public Object remove(Object key) {
