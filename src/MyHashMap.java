@@ -5,10 +5,10 @@ import java.util.Set;
 public class MyHashMap<K, V> implements Map {
     private int sizeArrOfNode = 16;
 
-    private Node<K,V>[] arrOfNodes = new Node[sizeArrOfNode];
+    private Node<K, V>[] arrOfNodes = new Node[sizeArrOfNode];
     int sizeMyHashMap = 0;
 
-    class Node<K,V> {
+    class Node<K, V> {
         K key;
         V value;
         Node next;
@@ -20,7 +20,6 @@ public class MyHashMap<K, V> implements Map {
 
         }
     }
-
 
 
     private int hashCode(Object key) {
@@ -46,10 +45,11 @@ public class MyHashMap<K, V> implements Map {
         while (oldNode.next != null) {
 
             if ((hashCode(oldNode.key) == hashCode(newNode.key)) && (oldNode.key.equals(newNode.key))) {
+                V valueBeforPut = (V) oldNode.next.value;
                 newNode.next = oldNode.next;
                 oldNode = newNode;
                 sizeMyHashMap++;
-                return arrOfNodes;
+                return valueBeforPut;
             }
 
             oldNode = oldNode.next;
@@ -61,14 +61,38 @@ public class MyHashMap<K, V> implements Map {
     }
 
     @Override
-    public Object get(Object key) {
+    public int size() {
+        return sizeMyHashMap;
+    }
+
+    @Override
+    public void clear() {
+        arrOfNodes = new Node[sizeArrOfNode];
+        sizeMyHashMap = 0;
+    }
+
+    @Override
+    public Object remove(Object key) {
+        int index = hashCode(key) % (sizeArrOfNode - 1);
+        Node oldNode = arrOfNodes[index];
+        while (oldNode.next != null) {
+
+            if ((hashCode(oldNode.key) == hashCode(key)) && (oldNode.key.equals(key))) {
+                V valueBeforRemove = (V) oldNode.next.value;
+                oldNode.key = oldNode.next.key;
+                oldNode.value = oldNode.next.value;
+                oldNode.next = oldNode.next.next;
+                sizeMyHashMap--;
+                return valueBeforRemove;
+            }
+        }
         return null;
     }
 
 
     @Override
-    public int size() {
-        return sizeMyHashMap;
+    public Object get(Object key) {
+        return null;
     }
 
 
@@ -89,19 +113,10 @@ public class MyHashMap<K, V> implements Map {
 
 
     @Override
-    public Object remove(Object key) {
-        return null;
-    }
-
-    @Override
     public void putAll(Map m) {
 
     }
 
-    @Override
-    public void clear() {
-
-    }
 
     @Override
     public Set keySet() {
