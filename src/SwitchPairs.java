@@ -9,6 +9,7 @@ public class SwitchPairs {
             arrayList.remove(i + 2);
             i++;
         }
+
         return arrayList;
 
     }
