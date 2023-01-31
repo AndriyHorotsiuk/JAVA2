@@ -74,6 +74,7 @@ public class MyLinkedList<T> implements List {
 
     @Override
     public Object remove(int index) {
+        T removeElement = getNode(index).elementNode;
         if (index == 0) {
             first = first.nextNode;
             first.nextNode.prevNode = first;
@@ -84,10 +85,12 @@ public class MyLinkedList<T> implements List {
         }
         Node beforeNode = getNode(index - 1);
         Node afterNode = getNode(index + 1);
+
         beforeNode.nextNode = afterNode;
         afterNode.prevNode = beforeNode;
         size--;
-        return null; //розібратися з об"єктом який повертається
+
+        return removeElement;
     }
 
     @Override
@@ -106,17 +109,22 @@ public class MyLinkedList<T> implements List {
 
     @Override
     public Object set(int index, Object element) {
+
         Node nodeOfInsertElement = getNode(index);
+       T setElement = (T) nodeOfInsertElement.elementNode;
         nodeOfInsertElement.elementNode = element;
-        return null; //розібратися з об"єктом який повертається
+        return setElement;
     }
 
     @Override
     public boolean contains(Object o) {
-        for (int i = 0; i < size; i++) {
+
+        int i = 0;
+        while (i < size) {
             if (get(i) == o) {
                 return true;
             }
+            i++;
         }
         return false;
     }
@@ -128,11 +136,6 @@ public class MyLinkedList<T> implements List {
     public Object getLast() {
         return last;
     }
-
-
-
-
-
 
 
     @Override
