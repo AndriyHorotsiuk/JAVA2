@@ -39,7 +39,7 @@ public class MyHashMap<K, V> implements Map {
         if (arrOfNodes[index] == null) {
             arrOfNodes[index] = newNode;
             sizeMyHashMap++;
-            return arrOfNodes;
+            return null;
         }
 
 
@@ -54,10 +54,10 @@ public class MyHashMap<K, V> implements Map {
 
             oldNode = oldNode.next;
         }
-
+        V valueBeforPut = (V) oldNode.next.value;
         oldNode.next = newNode;
         sizeMyHashMap++;
-        return arrOfNodes;
+        return valueBeforPut;
     }
 
     @Override
