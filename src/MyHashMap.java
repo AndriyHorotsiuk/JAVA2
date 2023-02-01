@@ -1,4 +1,5 @@
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,11 +30,15 @@ public class MyHashMap<K, V> implements Map {
         return key.hashCode();
     }
 
+    private int getiIndexOfKey(Object key) {
+        return int index = hashCode(key) % (sizeArrOfNode - 1);
+    }
+
     @Override
     public Object put(Object key, Object value) {
-        int index = hashCode(key) % (sizeArrOfNode - 1);
+        int index = getiIndexOfKey(key);
         Node newNode = new Node((K) key, (V) value);
-        Node oldNode = arrOfNodes[index];
+        Node oldNode = arrOfNodes[index)];
 
         if (arrOfNodes[index] == null) {
             arrOfNodes[index] = newNode;
@@ -73,12 +78,12 @@ public class MyHashMap<K, V> implements Map {
 
     @Override
     public Object remove(Object key) {
-        int index = hashCode(key) % (sizeArrOfNode - 1);
-        Node oldNode = arrOfNodes[index];
+
+        Node oldNode = arrOfNodes[getiIndexOfKey(key)];
         while (oldNode.next != null) {
 
             if ((hashCode(oldNode.key) == hashCode(key)) && (oldNode.key.equals(key))) {
-                V valueBeforRemove = (V) oldNode.next.value;
+                V valueBeforRemove = (V) oldNode.value;
                 oldNode.key = oldNode.next.key;
                 oldNode.value = oldNode.next.value;
                 oldNode.next = oldNode.next.next;
@@ -92,41 +97,90 @@ public class MyHashMap<K, V> implements Map {
 
     @Override
     public Object get(Object key) {
+        Node getNode = arrOfNodes[getiIndexOfKey(key)];
+        while (getNode.next != null) {
+
+            if ((hashCode(getNode.key) == hashCode(key)) && (getNode.key.equals(key))) {
+
+                return getNode.value;
+            }
+        }
+
         return null;
     }
 
-
     @Override
     public boolean isEmpty() {
-        return false;
-    }
-
-    @Override
-    public boolean containsKey(Object key) {
+        if (sizeMyHashMap == 0) {
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean containsValue(Object value) {
+
+        for (Node node : arrOfNodes) {
+            while (node.next != null) {
+                if (node.value.equals(value)) {
+                    return true;
+                }
+            }
+
+        }
         return false;
     }
 
 
     @Override
-    public void putAll(Map m) {
+    public boolean containsKey(Object key) {
+        Node node = arrOfNodes[getiIndexOfKey(key)];
+        while (node.next != null) {
 
+            if ((hashCode(node.key) == hashCode(key)) && (node.key.equals(key))) {
+
+                return true;
+            }
+        }
+
+
+        return false;
     }
-
 
     @Override
     public Set keySet() {
-        return null;
+        HashSet setKeys = new HashSet();
+        for (Node node : arrOfNodes) {
+            while (node.next != null) {
+                setKeys.add(node.key);
+            }
+
+        }
+        return setKeys;
     }
 
     @Override
     public Collection values() {
-        return null;
+        HashSet setValue = new HashSet();
+        for (Node node : arrOfNodes) {
+            while (node.next != null) {
+                setValue.add(node.value);
+            }
+
+        }
+        return setValue;
     }
+
+
+
+
+    @Override
+    public void putAll(Map m) {
+
+
+    }
+
+
 
     @Override
     public Set<Entry> entrySet() {
