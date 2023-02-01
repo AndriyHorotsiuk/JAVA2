@@ -1,7 +1,4 @@
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class MyHashMap<K, V> implements Map {
     private int sizeArrOfNode = 16;
@@ -149,7 +146,7 @@ public class MyHashMap<K, V> implements Map {
 
     @Override
     public Set keySet() {
-        HashSet setKeys = new HashSet();
+        Set setKeys = new HashSet();
         for (Node node : arrOfNodes) {
             while (node.next != null) {
                 setKeys.add(node.key);
@@ -172,14 +169,10 @@ public class MyHashMap<K, V> implements Map {
     }
 
 
-
-
     @Override
     public void putAll(Map m) {
-
-
+        m.keySet().stream(ell->put(ell,m.get(ell)));
     }
-
 
 
     @Override
