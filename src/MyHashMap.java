@@ -177,6 +177,16 @@ public class MyHashMap<K, V> implements Map {
 
     @Override
     public Set<Entry> entrySet() {
-        return null;
+        HashSet setMaps = new HashSet();
+        for (Node node : arrOfNodes) {
+            while (node.next != null) {
+                setMaps.add( new HashMap<K,V>().put((K) node.key, (V) node.value));
+            }
+
+        }
+        return setMaps;
+
+
+
     }
 }
