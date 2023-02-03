@@ -2,28 +2,26 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class StreamTwentyMethod {
+    //Method 1
     public static void printDimChar(char[] arr) {
 
-        Stream<Character> streamOfArray = Arrays.stream(arr);
-        streamOfArray.forEach(System.out::println);
+      //  Stream<Character> charStream = new String(arr).chars().mapToObj(i -> (char) i).forEach(System.out::println);
+
     }
 
     //Method 2
     public static void printTwoDimString(String[][] arr) {
-        for (String[] strings : arr) {
-            for (String s : strings) System.out.print(s + " ");
-            System.out.println();
-        }
+        Arrays.stream(arr).forEach(ell->(Arrays.stream(ell).forEach(System.out::println)));
+
     }
-
-
-
-
-
 
 
     //Method 3
     public static char[][] intTwoDimToChar(int[][] arr) {
+
+        //Stream<Character[]> charStream = new String(arr).chars().mapToObj(i -> (char) i);
+
+
         char[][] dimChar = new char[arr.length][arr[0].length];
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
