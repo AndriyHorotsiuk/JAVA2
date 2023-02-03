@@ -1,17 +1,17 @@
 import java.util.Arrays;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamTwentyMethod {
     //Method 1
     public static void printDimChar(char[] arr) {
-
-      //  Stream<Character> charStream = new String(arr).chars().mapToObj(i -> (char) i).forEach(System.out::println);
+     //   Stream<Character> charStream = new String(arr).chars().mapToObj(i -> (char) i).forEach(System.out::println);
 
     }
 
-    //Method 2
+    //Method 2 Arrays.stream(arr).forEach(ell->(Arrays.stream(ell).forEach(System.out::println)));
     public static void printTwoDimString(String[][] arr) {
-        Arrays.stream(arr).forEach(ell->(Arrays.stream(ell).forEach(System.out::println)));
+        Arrays.stream(arr).forEach(ell -> Arrays.stream(ell).forEach(System.out::println));
 
     }
 
@@ -19,10 +19,13 @@ public class StreamTwentyMethod {
     //Method 3
     public static char[][] intTwoDimToChar(int[][] arr) {
 
-        //Stream<Character[]> charStream = new String(arr).chars().mapToObj(i -> (char) i);
+
 
 
         char[][] dimChar = new char[arr.length][arr[0].length];
+      //  Arrays.stream(arr).forEach(ell -> Arrays.stream(ell).forEach(dimChar= ((char) arr));
+
+
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 dimChar[i][j] = ((char) arr[i][j]);
@@ -35,47 +38,26 @@ public class StreamTwentyMethod {
 
     //Method 4
     public static int[][] invertintTwoDim(int[][] arr) {
-        int[][] dimInvert = new int[arr.length][arr[0].length];
+
+      /*  int[][] dimInvert = new int[arr.length][arr[0].length];
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < arr[0].length; j++) {
                 dimInvert[i][j] = -arr[i][j];
             }
-        }
-        return dimInvert;
+        }*/
+        return (int[][]) Arrays.stream(arr).map(ell->Arrays.stream(ell).map(i->-i).toArray()).toArray();
     }
 
-    //Method 5
-    public static int maxTwoIntNum(int num1, int num2) {
 
-        return (num1 > num2) ? num1 : num2;
-    }
-
-    //Method 6
-    public static int maxThreeIntNum(int num1, int num2, int num3) {
-
-        return maxTwoIntNum((maxTwoIntNum(num1, num2)), num3);
-    }
 
     //Method 7
     public static int maxElementOfDimInt(int[] arr) {
-        int maxElenent = arr[0];
-        for (int i = 1; i < arr.length; i++) {
 
-            maxElenent = maxTwoIntNum(maxElenent, arr[i]);
-        }
-        return maxElenent;
+        return Arrays.stream(arr).max().getAsInt();
     }
     //Method 8
 
-    public static String charDimToString(char[] arr) {
-        String str = "";
-        for (int i = 0; i < arr.length; i++) {
-            str = str + arr[i];
 
-        }
-
-        return str;
-    }
 
     //Method 9
     public static boolean charSubSequenceTwoDim(char[] arr, char[] subarr) {
