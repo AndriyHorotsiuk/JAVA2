@@ -19,14 +19,24 @@ public class MyArrayList<T> implements List {
         return arrTo;
     }
 
+    class ResizeException extends Exception {
+        public ResizeException(String message) {
+            super(message);
+        }
+    }
 
     @Override
     public boolean add(Object ell) {
         if (sizeList == sizeArray - 1) {
+
             try {
-                sizeArray = resizeMultiplier * sizeArray;
-            } catch (OutOfMemoryError e) {
-                System.out.println("Error");
+                sizeArray  = resizeMultiplier * sizeArray;
+                if ((resizeMultiplier * sizeArray) > 2147483647) {
+                    throw new ResizeException("Error!!! Cannot be increased MyArrayList");
+                }
+
+            } catch (ResizeException e) {
+                System.out.println(e);
             }
 
             Object[] temporaryArray = new Object[sizeArray];
@@ -68,7 +78,7 @@ public class MyArrayList<T> implements List {
         sizeList--;
 
         if (sizeArray / sizeList > resizeMultiplier) {
-            sizeArray = (int)(sizeArray / resizeMultiplier);
+            sizeArray = (int) (sizeArray / resizeMultiplier);
             Object[] temporaryArray = new Object[sizeArray];
             for (int i = 0; i < sizeArray; i++) {
                 temporaryArray[i] = myArrayList[i];
@@ -87,9 +97,9 @@ public class MyArrayList<T> implements List {
 
     @Override
     public void clear() {
-     sizeArray = 10;
-     sizeList = 0;
-     myArrayList = new Object[sizeArray];
+        sizeArray = 10;
+        sizeList = 0;
+        myArrayList = new Object[sizeArray];
 
     }
 
@@ -112,7 +122,7 @@ public class MyArrayList<T> implements List {
 
     @Override
     public int lastIndexOf(Object o) {
-        for (int i = sizeList; i >=0; i--) {
+        for (int i = sizeList; i >= 0; i--) {
             if (myArrayList[i].equals(o)) {
                 return i;
             }
