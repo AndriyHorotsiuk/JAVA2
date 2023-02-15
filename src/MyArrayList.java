@@ -19,27 +19,20 @@ public class MyArrayList<T> implements List {
         return arrTo;
     }
 
-    static class ResizeException extends Exception {
-        public ResizeException(String message) {
-            super(message);
-        }
-    }
 
     @Override
     public boolean add(Object ell) {
         if (sizeList == sizeArray - 1) {
-            long forAnalysis = resizeMultiplier * sizeArray;
-            int maxInt = 2147483647;
-            try {
 
-                if (forAnalysis > maxInt) {
-                    throw new ResizeException("Error!!! Cannot be increased MyArrayList");
-                }
-
-            } catch (ResizeException e) {
-                System.out.println(e);
+            if (sizeArray == Integer.MAX_VALUE) {
+                return false;
             }
-            sizeArray = resizeMultiplier * sizeArray;
+
+            if (sizeArray > Integer.MAX_VALUE / resizeMultiplier) {
+                sizeArray = Integer.MAX_VALUE;
+            } else {
+                sizeArray = resizeMultiplier * sizeArray;
+            }
             Object[] temporaryArray = new Object[sizeArray];
             myArrayList = arrcopy(myArrayList, temporaryArray);
         }
