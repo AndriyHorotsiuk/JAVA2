@@ -1,10 +1,11 @@
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.stream.Stream;
 
 public class StreamTwentyMethod {
     //Method 1
     public static void printDimChar(char[] arr) {
-        //   Stream<Character> charStream = new String(arr).chars().mapToObj(i -> (char) i).forEach(System.out::println);
+       Stream<Character> charStream = new String(arr).chars().mapToObj(i -> (char) i).forEach(System.out::println);
 
     }
 
@@ -18,18 +19,7 @@ public class StreamTwentyMethod {
     //Method 3
     public static char[][] intTwoDimToChar(int[][] arr) {
 
-
-        char[][] dimChar = new char[arr.length][arr[0].length];
-        //  Arrays.stream(arr).forEach(ell -> Arrays.stream(ell).forEach(dimChar= ((char) arr));
-
-
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[0].length; j++) {
-                dimChar[i][j] = ((char) arr[i][j]);
-            }
-        }
-        System.out.println(dimChar.toString());
-        return dimChar;
+        return (char[][]) Arrays.stream(arr).map(ell -> Arrays.stream(ell).map(i -> (char)i).toArray()).toArray()
 
     }
 
@@ -45,12 +35,11 @@ public class StreamTwentyMethod {
 
         return Arrays.stream(arr).max().getAsInt();
     }
-    //Method 8
+
 
 
     //Method 9
     public static boolean charSubSequenceTwoDim(char[] arr, char[] subarr) {
-
 
         int arrSize = 0;
         for (char ellemetArr : arr) {
@@ -94,13 +83,7 @@ public class StreamTwentyMethod {
 
     //Method 10
     public static int indexIntNumOfIntDim(int a, int[] arr) {
-
-        for (int i = 0; i < arr.length; i++) {
-            if (a == arr[i]) {
-                return i;
-            }
-        }
-        return -1;
+        return Arrays.asList(arr).indexOf(a);
     }
 
 
