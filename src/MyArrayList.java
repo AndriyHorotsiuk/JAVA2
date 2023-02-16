@@ -22,7 +22,7 @@ public class MyArrayList<T> implements List {
 
     @Override
     public boolean add(Object ell) {
-        if (sizeList == sizeArray - 1) {
+        if (sizeList == sizeArray) {
 
             if (sizeArray == Integer.MAX_VALUE) {
                 return false;
@@ -36,6 +36,7 @@ public class MyArrayList<T> implements List {
             Object[] temporaryArray = new Object[sizeArray];
             myArrayList = arrcopy(myArrayList, temporaryArray);
         }
+
         myArrayList[sizeList] = ell;
         sizeList++;
         return true;
