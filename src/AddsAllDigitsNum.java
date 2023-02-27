@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class addsAllDigitsNum {
+public class AddsAllDigitsNum {
     public static void addsAllDigitsIntNum() {
 
         Scanner scanner = new Scanner(System.in);
