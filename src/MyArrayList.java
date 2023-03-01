@@ -25,7 +25,7 @@ public class MyArrayList<T> implements List {
         if (sizeList == sizeArray) {
 
             if (sizeArray == Integer.MAX_VALUE) {
-                return false;
+                new throw IllegalStateException;
             }
 
             if (sizeArray > Integer.MAX_VALUE / resizeMultiplier) {
