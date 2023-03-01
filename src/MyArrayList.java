@@ -71,7 +71,7 @@ public class MyArrayList<T> implements List {
         myArrayList[sizeList] = null;
         sizeList--;
 
-        if (sizeArray / sizeList > resizeMultiplier) {
+        if ((sizeArray / sizeList) > Math.pow(resizeMultiplier, 2)) {
             sizeArray = (int) (sizeArray / resizeMultiplier);
             Object[] temporaryArray = new Object[sizeArray];
             for (int i = 0; i < sizeArray; i++) {
